@@ -141,7 +141,13 @@ $('#viewer-button').click(async () => {
     toggleDataChannelElements();
 
     startViewer(localView, remoteView, formValues, onStatsReport, event => {
-        remoteMessage.append(`${event.data}\n`);
+        if (event.data.indexOf("realtime:") != -1) {
+            const timestamp = parseInt(event.data.replace(/realtime:/, ""));
+            $('#video-time').text(new Date(timestamp).toLocaleString());
+
+        } else {
+            remoteMessage.append(`${event.data}\n`);
+        }
     });
 });
 
@@ -161,6 +167,27 @@ $('#master .send-message').click(async () => {
 $('#viewer .send-message').click(async () => {
     const viewerLocalMessage = $('#viewer .local-message')[0];
     sendViewerMessage(viewerLocalMessage.value);
+});
+
+$('#send-cmd-terminated').click(async () => {
+    sendViewerMessage('cmd:terminated');
+    onStop();
+});
+
+$('#select-channel-auto').click(async () => {
+    sendViewerMessage('select-channel:auto');
+});
+
+$('#select-channel-sd').click(async () => {
+    sendViewerMessage('select-channel:sd');
+});
+
+$('#select-channel-md').click(async () => {
+    sendViewerMessage('select-channel:md');
+});
+
+$('#select-channel-hd').click(async () => {
+    sendViewerMessage('select-channel:hd');
 });
 
 // Read/Write all of the fields to/from localStorage so that fields are not lost on refresh.

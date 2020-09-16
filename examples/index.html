@@ -148,10 +148,13 @@
             <div class="row">
                 <div class="col">
                     <h5>Return Channel</h5>
-                    <div class="video-container"><video class="local-view" autoplay playsinline controls muted /></div>
+                    <div class="video-container">
+                        <video class="local-view" autoplay playsinline controls muted />
+                    </div>
                 </div>
                 <div class="col">
                     <h5>From Master</h5>
+                    <div id="video-time" style="font-size:12px; color: red; z-index:9999;"></div>
                     <div class="video-container"><video class="remote-view" autoplay playsinline controls /></div>
                 </div>
             </div>
@@ -172,6 +175,11 @@
                   <button type="button" class="btn btn-primary">Send DataChannel Message</button>
                 </span>
                 <button id="stop-viewer-button" type="button" class="btn btn-primary">Stop Viewer</button>
+                <button id="send-cmd-terminated" type="button" class="btn btn-primary">Terminated</button>
+                <button id="select-channel-auto" type="button" class="btn btn-primary">SelectChannel-AUTO</button>
+                <button id="select-channel-sd" type="button" class="btn btn-primary">SelectChannel-SD</button>
+                <button id="select-channel-md" type="button" class="btn btn-primary">SelectChannel-MD</button>
+                <button id="select-channel-hd" type="button" class="btn btn-primary">SelectChannel-HD</button>
             </div>
         </div>
 
